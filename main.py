@@ -65,6 +65,21 @@ class Healer(Character):
     SPECIAL_BUFF = DEFAULT_DEFENCE + 30
 
 
-warrior = Warrior('Кодослав')
-print(warrior)
-print(warrior.attack())
+def choise_char_class(char_name: str) -> Character:
+    '''Возвращает строку с выбранным классом персонажа'''
+    
+    game_classes = {'warior': Warrior, 'mage': Mage, 'healer': Healer}
+
+    approve_choice: str = None
+
+    while approve_choice != 'y':
+        selected_class = input('Введите название персонажа, '
+                               'за которого хочеш играть: Воитель - warrior, '
+                               'Маг - mage. Лекарь - healer: '
+                               )
+        char_class: Character = game_classes[selected_class](char_name)
+        print(char_class)
+        approve_choice = input('Нажмите (Y), чтобы подтвердить выбор, '
+                               'или любую другую кнопку, '
+                               'чтобы выбрать другого персонажа ').lower()
+    return char_class
